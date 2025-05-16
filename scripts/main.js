@@ -34,7 +34,12 @@ const getPosts = async () => {
 
         let card = document.createElement("div")
         card.classList.add("card")
+        // card.classList.add("bg-dark")
+        // card.classList.add("text-light")
         card.style.width = "18rem"
+
+        // style="background-color: rgb(153, 192, 226);"
+        card.style.backgroundColor = "rgb(212, 219, 225)"
 
         let img = document.createElement("img")
         img.src = post.imageURL
