@@ -6,9 +6,22 @@ let btn_add_post = document.getElementById("btn_add_post")
 
 let display_user = document.getElementById("display_user")
 
+let signup_btn = document.getElementById("signup_btn")
+let login_btn = document.getElementById("login_btn")
+let logout_btn = document.getElementById("logout_btn")
+
 if(localStorage.getItem("username")){
     display_user.innerText = localStorage.getItem("username")
+    signup_btn.classList.add("d-none")
+    login_btn.classList.add("d-none")
+} else {
+    logout_btn.classList.add("d-none")
 }
+
+logout_btn.addEventListener("click", () => {
+    localStorage.removeItem("username")
+    location.reload();
+})
 
 
 // get and display posts
@@ -77,6 +90,10 @@ const getPosts = async () => {
         }
 
         del_btn.addEventListener("click", async () => {
+
+            if(!confirm("are you sure you want to delete this post")){
+                return
+            }
             
             await fetch(`${api}/${post.id}`, {
                 method: 'DELETE',
