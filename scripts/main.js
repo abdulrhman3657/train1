@@ -75,6 +75,16 @@ const getPosts = async () => {
         if(post.username == localStorage.getItem("username")){
             del_btn.classList.remove("d-none")
         }
+
+        del_btn.addEventListener("click", async () => {
+            
+            await fetch(`${api}/${post.id}`, {
+                method: 'DELETE',
+            }).then(() => {
+                location.reload();
+            })
+
+        })
         
         card_body.appendChild(card_text)
         card_body.appendChild(btn)
